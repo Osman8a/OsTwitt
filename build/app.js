@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -79,7 +79,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function component() {
     var element = document.createElement('div');
 
-    element.innerHTML = _lodash2.default.join(['Hello', 'webpack'], ' ');
+    element.innerHTML = _lodash2.default.join(['Hola', 'Mundo '], ' ');
 
     return element;
 }
