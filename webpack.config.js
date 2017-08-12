@@ -6,22 +6,26 @@ const   webpack = require('webpack'),
 
 module.exports={
  
-    entry: ['./src/index.js'], //entrada
+    context: path.resolve(__dirname, 'src'),
+    entry: './index.js',
+    //entry: ['./src/index.jsx'], //entrada
     output: { //salida
         filename: 'app.js', //nombre del archivo
-        path: path.resolve(__dirname, "dist"),    //donde se situara el fichero de salida
-        publicPath: '/'  //ruta en un servidor de desarrollo
+        path: path.resolve(__dirname, "./build"),    //donde se situara el fichero de salida
+        publicPath: ''  //ruta en un servidor de desarrollo
     },
 
     module:{
-        rules:[
+        loaders:[
              { 
                 test: /(\.js|jsx)$/, 
                 exclude: path.resolve(__dirname + '/node_modules/'),
-                use: ['babel-loader'], 
-                options:{ 
-                    presets: [ 'babel-loader-react', 'babel-loader-latest' ]
-                    } 
+                use: [{
+                    loader: "babel-loader",
+                    options:{
+                            presets: [ 'babel-preset-react', 'babel-preset-latest' ]
+                        }
+                }] 
             },
             { 
                 test: /\.css$/, 
@@ -30,8 +34,17 @@ module.exports={
         ]
     },
     devServer:{
-        host: 'localhost',
+        host: '0.0.0.0',
         port: 8080,
         inline:true
-    }
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            filename: './src/assets/index.html'
+        }),
+        new ExtractTextPlugin({
+            filename:'style.css', 
+            allChunks:true
+        })
+    ]
 };
