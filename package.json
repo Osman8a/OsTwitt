@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --colors",
-    "serve": "webpack-dev-server --content-base buid/ --colors --progress",
+    "serve": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start": "npm run build && npm run serve"
   },
   "dependencies": {

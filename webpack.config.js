@@ -1,50 +1,50 @@
-const   webpack = require('webpack'),
-        HtmlWebpackPlugin = require('html-webpack-plugin'),
-        ExtractTextPlugin = require('extract-text-webpack-plugin'),
-        cssModules = 'modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
-        path = require("path");
+const webpack = require('webpack'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    cssModules = 'modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
+    path = require("path");
 
-module.exports={
- 
+module.exports = {
+
     context: path.resolve(__dirname, 'src'),
     entry: './index.js',
     //entry: ['./src/index.jsx'], //entrada
     output: { //salida
         filename: 'app.js', //nombre del archivo
-        path: path.resolve(__dirname, "./build"),    //donde se situara el fichero de salida
-        publicPath: ''  //ruta en un servidor de desarrollo
+        path: path.resolve(__dirname, "build"), //donde se situara el fichero de salida
     },
 
-    module:{
-        loaders:[
-             { 
-                test: /(\.js|jsx)$/, 
+    module: {
+        loaders: [{
+                test: /(\.js|jsx)$/,
                 exclude: path.resolve(__dirname + '/node_modules/'),
                 use: [{
                     loader: "babel-loader",
-                    options:{
-                            presets: [ 'babel-preset-react', 'babel-preset-latest' ]
-                        }
-                }] 
+                    options: {
+                        presets: ['babel-preset-react', 'babel-preset-latest']
+                    }
+                }]
             },
-            { 
-                test: /\.css$/, 
+            {
+                test: /\.css$/,
                 use: `style-loader!css-loader?${cssModules}`
             }
         ]
     },
-    devServer:{
-        host: '0.0.0.0',
+    devServer: {
+        contentBase: path.join(__dirname, "build"),
+        compress: true,
         port: 8080,
-        inline:true
+        open: true
     },
-    plugins:[
+    plugins: [
         new HtmlWebpackPlugin({
-            filename: './src/assets/index.html'
+            filename: `index.html`,
+            template: `assets/index.html`,
         }),
         new ExtractTextPlugin({
-            filename:'style.css', 
-            allChunks:true
+            filename: 'style.css',
+            allChunks: true
         })
     ]
 };
