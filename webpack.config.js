@@ -33,10 +33,11 @@ module.exports={
             }
         ]
     },
-    devServer:{
-        host: '0.0.0.0',
-        port: 8080,
-        inline:true
+    devServer: {
+        contentBase: path.join(__dirname, "build/src/assets/"),
+        compress: true,
+         port: 8080,
+         open:true
     },
     plugins:[
         new HtmlWebpackPlugin({
