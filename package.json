@@ -1,0 +1,29 @@
+{
+  "name": "ostwitt",
+  "version": "1.0.0",
+  "description": "Clon de Twiiter Desarrollado por Osman Ochoa con propositos educativos",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack --colors",
+    "serve": "webpack-dev-server --content-base buid/ --colors --progress",
+    "start": "npm run build && npm run serve"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.1.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "path": "^0.12.7",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.3",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "author": "Osman Ochoa",
+  "license": "MIT"
+}
