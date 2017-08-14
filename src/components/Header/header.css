@@ -1,0 +1,14 @@
+.root{
+    display: flex;
+    background-color: #2d84cc; /**colocar de fondo**/
+    align-items: center; /**alinar items**/
+    justify-content: space-between; /**justificar contenido con espacios entre ellos**/
+    color: #fff; /**color del texto**/
+    padding: 1em; /**espaciado**/
+}
+
+.logo{
+    margin: 0; /**maragen**/
+    color: #fff;/**color del logo**/
+    font-size: 14pt; /**tamano de la fuente**/
+}

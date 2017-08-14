@@ -9,11 +9,14 @@
     "start": "npm run build && npm run serve"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",

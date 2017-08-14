@@ -5,15 +5,17 @@ const webpack = require('webpack'),
     path = require("path");
 
 module.exports = {
-
+    resolve: {
+        extensions: [".js",".jsx",".css"]
+        
+    },
     context: path.resolve(__dirname, 'src'),
-    entry: './index.js',
+    entry: './index.jsx',
     //entry: ['./src/index.jsx'], //entrada
     output: { //salida
         filename: 'app.js', //nombre del archivo
         path: path.resolve(__dirname, "build"), //donde se situara el fichero de salida
     },
-
     module: {
         loaders: [{
                 test: /(\.js|jsx)$/,
@@ -21,13 +23,13 @@ module.exports = {
                 use: [{
                     loader: "babel-loader",
                     options: {
-                        presets: ['babel-preset-react', 'babel-preset-latest']
+                        presets: ['react', 'latest']
                     }
                 }]
             },
             {
                 test: /\.css$/,
-                use: `style-loader!css-loader?${cssModules}`
+                loader: `style-loader!css-loader?${cssModules}`
             }
         ]
     },
