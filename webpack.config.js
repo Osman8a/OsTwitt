@@ -5,6 +5,7 @@ const webpack = require('webpack'),
     path = require("path");
 
 module.exports = {
+    devtool:'scheap-eval-source-map',
     resolve: {
         extensions: [".js",".jsx",".css"]
         
@@ -29,15 +30,14 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: `style-loader!css-loader?${cssModules}`
+                loader: `style-loader!css-loader`
             }
         ]
     },
     devServer: {
         contentBase: path.join(__dirname, "build"),
         compress: true,
-        port: 8080,
-        open: true
+        port: 8080
     },
     plugins: [
         new HtmlWebpackPlugin({
