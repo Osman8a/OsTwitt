@@ -8,7 +8,7 @@ module.exports = {
     devtool:'scheap-eval-source-map',
     resolve: {
         extensions: [".js",".jsx",".css"]
-        
+
     },
     context: path.resolve(__dirname, 'src'),
     entry: './index.jsx',
@@ -37,7 +37,8 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "build"),
         compress: true,
-        port: 8080
+        port: 8080,
+        open: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
