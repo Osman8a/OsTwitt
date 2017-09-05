@@ -1,47 +1,48 @@
-rootmessage{
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
-    padding: 1em;
+.rootmessage{
+    background-color: #fff;         /*fondo de pantalla*/
+    border: 1px solid #ccc;         /*permite definir de un golpe todos los bordes */
+    border-radius: 5px;               /* qué tan redondeadas serán las esquinas*/
+    margin: 0.5em;                    /*establece el margen para los cuatro lados, em aplica a todos los lados.*/
+    padding: 1em;                     /*Establece la anchura de algunas o todas las zonas de relleno de los elementos*/
 }
 
 .text{
-    font-size: 16pt;
-    font-weight: 200;
+    font-size: 16pt;        /*tamano del texto*/     
+    font-weight: 200;       /*especifica el peso o grueso de la letra*/
 }
 
 .user{
-    display: flex;
-    align-items: center
+    display: flex;          /*define el elemento como contenedor flexible*/
+    align-items: center     /*alinea los elementos de la línea flexible actual.Centra los elementos en el eje transversal*/
 }
 
 .avatar{
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
+    width: 34px;            /*anchura del area de contenido de un elemento*/
+    height: 34px;           /*altura del area de contenido de un elemento*/
+    border-radius: 50%;     /*redondeado*/
 }
 
 .displayName{
-    font-weight: bold;
-    padding: 0.5em;
+    font-weight: bold;      
+    padding: 0.5em;         
 }
 
 .username{
-    color: #aaa;
+    color: #aaa;          /*pone el color de primer plano*/
 }
 
 .date{
-    color: #aaa;
-    padding: 0.5em;
-    font-size: 8pt;
+    color: #aaa;          
+    padding: 0.5em;         
+    font-size: 8pt;         
 }
 
 .buttons{
-    display: flex;
-    justify-content: flex-start;
-    color: #aaa;
+    display: flex;                   
+    justify-content: flex-start;     /*define cómo el navegador distribuye el espacio entre y alrededor de los items*/
+    color: #aaa;                   
 }
 
 .icon{
-    margin-right: 3em;
+    margin-right: 3em;               /*establece el margen derecho de un elemento.*/
 }

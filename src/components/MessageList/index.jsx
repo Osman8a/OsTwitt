@@ -1,6 +1,7 @@
 'use stric';
 import React, {Component} from 'react';
 import Message from '../Message';
+import './message-list.css'
 
 class MessageList extends Component{
     constructor(props){
@@ -9,7 +10,7 @@ class MessageList extends Component{
 
     render(){
         return(
-           <div>
+           <div className={'rootmessage-list'}>
                 {this.props.messages.map((msg) =>{
                  return(
                    <Message
