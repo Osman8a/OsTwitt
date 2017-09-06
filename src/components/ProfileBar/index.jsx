@@ -1,16 +1,17 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import './profile-bar.css'
 
-class ProfileBar extends Component{
-    constructor(){
-        super();
+class ProfileBar extends Component {
+    constructor(props) {
+        super(props);
     }
 
-    render(){
-        return(
-            <div className={'root'}>
+    render() {
+        return (
+            <div className={'rootprofile'}>
                 <figure>
-                    <img className={'avatar'}  src={this.props.picture}/>
-                </figure> 
+                    <img className={'avatar'} src={this.props.picture} />
+                </figure>
                 <span className={'username'}>Hola @{this.props.username}</span>
                 <button onClick={this.props.onOpenText} className={'button'}>
                     <span className="fa fa-lg fa-edit"></span> Tweet

@@ -22,7 +22,7 @@ class App extends Component{
         return(
             <div>
                 <Header/>
-                <Main user={this.state.messages}/>
+                <Main user={this.state.user}/>
             </div>
         )
     }
