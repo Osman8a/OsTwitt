@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import MessageList from '../MessageList'
 import InputText from '../InputText'
-
+import ProfileBar from '../ProfileBar'
 
 class Main extends Component{
     constructor(){
