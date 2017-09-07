@@ -25,6 +25,28 @@ class Main extends Component {
                 date: Date.now() - 180000
             }]
         };
+        this.handleSendText = this.handleSendText.bind(this)
+        this.handleCloseText = this.handleCloseText.bind(this)
+        this.handleOpenText = this.handleOpenText.bind(this)
+    }
+
+
+    handleSendText(event) {
+        event.preventDefault()
+        let newMessage={
+            id: uuid.v4(),
+            username: this.props.user.email.split('@')[0],
+            displayName: this.props.user.displayName,
+            date: Date.now(),
+            text: event.target.text.value
+        }
+
+        console.log(newMessage);
+    }
+
+    handleCloseText(event) {
+        event.preventDefault()
+        this.setState({openText: false})
     }
     /**
      * @function handleOpenText
@@ -44,7 +66,12 @@ class Main extends Component {
      */
     renderOpenText() {
         if (this.state.openText) {
-            return <InputText/>
+            return (
+                <InputText
+                    onSendText={this.handleSendText}
+                    onCloseText={this.handleCloseText}
+                />
+            )
         }
     }
     render() {
