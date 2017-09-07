@@ -33,20 +33,24 @@ class Main extends Component {
 
     handleSendText(event) {
         event.preventDefault()
-        let newMessage={
+        let newMessage = {
             id: uuid.v4(),
             username: this.props.user.email.split('@')[0],
             displayName: this.props.user.displayName,
+            picture: this.props.user.photoURL,
             date: Date.now(),
             text: event.target.text.value
         }
 
-        console.log(newMessage);
+        this.setState({
+            messages: this.state.messages.concat([newMessage]),
+            openText: false
+        })
     }
 
     handleCloseText(event) {
         event.preventDefault()
-        this.setState({openText: false})
+        this.setState({ openText: false })
     }
     /**
      * @function handleOpenText

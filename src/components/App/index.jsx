@@ -14,7 +14,8 @@ class App extends Component{
           user:{
               photoURL: 'https://s.gravatar.com/avatar/0a5d785eb9aadc451f2bfdd5a2abebaf?s=80',
               email: 'ochoaosman@gmail.com',
-              onOpenText:false
+              onOpenText:false,
+              displayName: 'Osman Ochoa'
           }
       }
   }  
