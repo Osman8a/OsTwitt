@@ -5,6 +5,8 @@ import 'normalize-css'
 import './app.css'
 import Header from '../Header'
 import Main from '../Main'
+import Profile from '../Profile'
+import Login from '../Login'
 
 class App extends Component {
 
@@ -12,14 +14,16 @@ class App extends Component {
         super()
 
         this.state = {
-            user: {
-                photoURL: 'https://s.gravatar.com/avatar/0a5d785eb9aadc451f2bfdd5a2abebaf?s=80',
-                email: 'ochoaosman@gmail.com',
-                onOpenText: false,
-                displayName: 'Osman Ochoa'
-            }
+            user: null
         }
+
+        this.handleOnAuth = this.handleOnAuth.bind(this)
     }
+
+    handleOnAuth() {
+        console.log('Auth');
+    }
+
     render() {
         return (
             <Router>
@@ -32,16 +36,29 @@ class App extends Component {
                                     <Main user={this.state.user} />
                                 )
                             } else {
-                                //render <Login>//
+                                return (
+                                    <Login onAuth={this.handleOnAuth} />
+                                )
                             }
                         }} />
 
-                        <Route path="/profile" render={() => {
-                            //render <Profile> 
-                        }} />
+                        <Route path="/profile" render={() => (
+                            <Profile
+                                picture={this.state.user.photoURL}
+                                username={this.state.user.email.split('@')[0]}
+                                displayName={this.state.user.displayName}
+                                location={this.state.user.location}
+                                emailAddress={this.state.user.email}
+                            />
+                        )} />
 
                         <Route path="/user/:username" render={(params) => {
-                            //Render <Profile /> pasando params.username
+                            return (
+                                <Profile
+                                    displayName={params.username}
+                                    username={params.username}
+                                />
+                            )
                         }} />
                     </Switch>
                 </div>
