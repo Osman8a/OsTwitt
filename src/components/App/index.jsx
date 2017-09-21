@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import firebase from 'firebase';
 import 'normalize-css'
 
 import './app.css'
@@ -21,7 +22,21 @@ class App extends Component {
     }
 
     handleOnAuth() {
-        console.log('Auth');
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider)
+            .then(result => console.log(`${result.user.email} ha iniciado sesion`))
+            .catch(error => console.log(`Error: ${error.code} : ${error.message}`))
+    }
+
+    componentWillMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({ user })
+            } else {
+                this.setState({ user: null })
+            }
+        })
     }
 
     render() {
