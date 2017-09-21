@@ -19,14 +19,7 @@ class App extends Component {
         }
 
         this.handleOnAuth = this.handleOnAuth.bind(this)
-    }
-
-    handleOnAuth() {
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        firebase.auth().signInWithPopup(provider)
-            .then(result => console.log(`${result.user.email} ha iniciado sesion`))
-            .catch(error => console.log(`Error: ${error.code} : ${error.message}`))
+        this.handleLogout = this.handleLogout.bind(this)
     }
 
     componentWillMount() {
@@ -39,6 +32,20 @@ class App extends Component {
         })
     }
 
+    handleOnAuth() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider)
+            .then(result => console.log(`${result.user.email} ha iniciado sesion`))
+            .catch(error => console.error(`Error: ${error.code} : ${error.message}`))
+    }
+
+    handleLogout(){
+        firebase.auth().signOut()
+        .then(()=> console.log('Te has desconectado correctamente'))
+        .catch(()=> console.error('Un error ocurrio'))
+    }
+
     render() {
         return (
             <Router>
@@ -48,7 +55,10 @@ class App extends Component {
                         <Route exact path="/" render={() => {
                             if (this.state.user) {
                                 return (
-                                    <Main user={this.state.user} />
+                                    <Main 
+                                        user={this.state.user} 
+                                        onLogout={this.handleLogout}
+                                        />
                                 )
                             } else {
                                 return (

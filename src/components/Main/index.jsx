@@ -6,7 +6,8 @@ import InputText from '../InputText'
 import ProfileBar from '../ProfileBar'
 
 const propTypes={
-    user : PropTypes.object.isRequired
+    user : PropTypes.object.isRequired,
+    onLogout: PropTypes.func.isRequired
 }
 
 class Main extends Component {
@@ -161,6 +162,7 @@ class Main extends Component {
                     picture={this.props.user.photoURL}
                     username={this.props.user.email.split('@')[0]}// un array con 2 items dividido por el caracter @
                     onOpenText={this.handleOpenText}
+                    onLogout={this.props.onLogout}
                 />
                 {this.renderOpenText()}
                 <MessageList
