@@ -4,9 +4,11 @@ import uuid from 'uuid'
 import MessageList from '../MessageList'
 import InputText from '../InputText'
 import ProfileBar from '../ProfileBar'
+import firebase from 'firebase';
 
-const propTypes={
-    user : PropTypes.object.isRequired,
+
+const propTypes = {
+    user: PropTypes.object.isRequired,
     onLogout: PropTypes.func.isRequired
 }
 
@@ -17,25 +19,7 @@ class Main extends Component {
             user: Object.assign({}, this.props.user, { retweets: [] }, { favorites: [] }),
             openText: false, /*propiedad para abrir caja de texto*/
             userNameToReply: '',
-            messages: [{
-                id: uuid.v4(),
-                text: 'Mensaje del Twitt',
-                picture: 'https://s.gravatar.com/avatar/0a5d785eb9aadc451f2bfdd5a2abebaf?s=80',
-                displayName: 'Osman Ochoa',
-                username: 'Osman8a',
-                date: Date.now() - 180000,
-                retweets: 0,
-                favorites: 0
-            }, {
-                id: uuid.v4(),
-                text: 'Este es otro Twiit de prueba',
-                picture: 'https://s.gravatar.com/avatar/0a5d785eb9aadc451f2bfdd5a2abebaf?s=80',
-                displayName: 'Osman Ochoa',
-                username: 'Osman8a',
-                date: Date.now() - 180000,
-                retweets: 0,
-                favorites: 0
-            }]
+            messages: []
         };
         this.handleSendText = this.handleSendText.bind(this)
         this.handleCloseText = this.handleCloseText.bind(this)
@@ -45,6 +29,16 @@ class Main extends Component {
         this.handleReplyTweet = this.handleReplyTweet.bind(this)
     }
 
+    componentWillMount () {
+        const messagesRef = firebase.database().ref().child('messages')
+    
+        messagesRef.on('child_added', snapshot => {
+          this.setState({
+            messages: this.state.messages.concat(snapshot.val()),
+            openText: false
+          })
+        })
+      }
 
     handleSendText(event) {
         event.preventDefault()
@@ -54,13 +48,15 @@ class Main extends Component {
             displayName: this.props.user.displayName,
             picture: this.props.user.photoURL,
             date: Date.now(),
-            text: event.target.text.value
+            text: event.target.text.value,
+            favorites: 0,
+            retweets:0
         }
 
-        this.setState({
-            messages: this.state.messages.concat([newMessage]),
-            openText: false 
-        })
+        const messageRef = firebase.database().ref().child('messages')
+        const messageID = messageRef.push()
+        messageID.set(newMessage)
+
     }
 
     /**
@@ -148,9 +144,9 @@ class Main extends Component {
         }
     }
 
-    handleReplyTweet(msgId, userNameToReply){
+    handleReplyTweet(msgId, userNameToReply) {
         this.setState({
-            openText:true,
+            openText: true,
             userNameToReply
         })
     }
@@ -169,7 +165,7 @@ class Main extends Component {
                     messages={this.state.messages}
                     onRetweet={this.handleRetweet}
                     onFavorite={this.handleFavorite}
-                    onReplyTweet= {this.handleReplyTweet}
+                    onReplyTweet={this.handleReplyTweet}
                 />
             </div>
         )

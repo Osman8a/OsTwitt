@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import './input-text.css'
 import PropTypes from 'prop-types'
@@ -11,9 +12,11 @@ const propTypes = {
 function InputText({ onSendText, userNameToReply, onCloseText }) {
     return (
         <form className={'form'} onSubmit={onSendText}>
-            <textarea className='text' name="text" >
-                {(userNameToReply) ? `@${userNameToReply}` : ''}
-            </textarea>
+            <textarea
+                className='text'
+                name="text"
+                defaultValue={(userNameToReply) ? `@${userNameToReply}` : ''}
+            />
             <div className={'buttons'}>
                 <button className={'close'} onClick={onCloseText}>Cerrar</button>
                 <button className={'send'} type='submit'>Enviar</button>
