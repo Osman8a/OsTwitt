@@ -4,6 +4,7 @@
   "description": "Clon de Twiiter Desarrollado por Osman Ochoa con propositos educativos",
   "main": "webpack.config.js",
   "scripts": {
+    "production" : "webpack -p",
     "build": "webpack --colors",
     "serve": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start": "npm run build && npm run serve"

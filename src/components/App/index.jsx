@@ -20,6 +20,8 @@ class App extends Component {
 
         this.handleOnAuth = this.handleOnAuth.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
+        this.handleOnAuthFacebook = this.handleOnAuthFacebook.bind(this)
+        this.handleOnAuthGithub = this.handleOnAuthGithub.bind(this)
     }
 
     componentWillMount() {
@@ -40,10 +42,26 @@ class App extends Component {
             .catch(error => console.error(`Error: ${error.code} : ${error.message}`))
     }
 
-    handleLogout(){
+    handleOnAuthFacebook() {
+        const provider = new firebase.auth.FacebookAuthProvider();
+
+        firebase.auth().signInWithPopup(provider)
+            .then(result => console.log(`${result.user.email} ha iniciado sesion con Facebook`))
+            .catch(error => console.error(`Error: ${error.code} : ${error.message}`))
+    }
+
+    handleOnAuthGithub() {
+        const provider = new firebase.auth.GithubAuthProvider();
+
+        firebase.auth().signInWithPopup(provider)
+            .then(result => console.log(`${result.user.email} ha iniciado sesion con Github`))
+            .catch(error => console.error(`Error: ${error.code} : ${error.message}`))
+    }
+
+    handleLogout() {
         firebase.auth().signOut()
-        .then(()=> console.log('Te has desconectado correctamente'))
-        .catch(()=> console.error('Un error ocurrio'))
+            .then(() => console.log('Te has desconectado correctamente'))
+            .catch(() => console.error('Un error ocurrio'))
     }
 
     render() {
@@ -55,14 +73,18 @@ class App extends Component {
                         <Route exact path="/" render={() => {
                             if (this.state.user) {
                                 return (
-                                    <Main 
-                                        user={this.state.user} 
+                                    <Main
+                                        user={this.state.user}
                                         onLogout={this.handleLogout}
-                                        />
+                                    />
                                 )
                             } else {
                                 return (
-                                    <Login onAuth={this.handleOnAuth} />
+                                    <Login
+                                        onAuth={this.handleOnAuth}
+                                        onAuth2={this.handleOnAuthFacebook}
+                                        onAuth3={this.handleOnAuthGithub}
+                                    />
                                 )
                             }
                         }} />
