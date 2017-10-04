@@ -32,17 +32,18 @@ Para compilar la aplicacion teclea
 npm start
 ```
 
-
 ## Desarrollado con
 
 * [WepPack](https://webpack.js.org/) - Sistema de bundling para preparar el desarrollo de una aplicación
 * [ReactJs](https://facebook.github.io/react/) - Biblioteca Javascript de código abierto para crear interfaces de usuario desarrollada por Facebook
 * [FireBase](https://firebase.google.com/) - Plataforma de desarrollo móvil que permite desarrollar apps multiplataforma
 
-
 ## Versioning
 
 Use [Git](https://git-scm.com/) para el control de versiones.
+
+##Observa el Twitter
+* [OsTwitt](https://ostwitt-dc177.firebaseapp.com/)
 
 ## Autor
 
